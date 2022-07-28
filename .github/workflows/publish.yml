@@ -26,4 +26,18 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: bash setup.sh
+        
+    - name: Setup AWS CLI
+    - run: aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+    - run: aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    - run: aws configure set region ${{ secrets.AWS_REGION }}
+    - run: aws configure set output json
+    
+    
+    - name: build
+    - run: npm run build
+    
+    - name: publish
+    - run: aws s3 cp --recursive public/ s3://jamstack-public/ --cache-control 'public, max-age=300, s-maxage=315360000'
+    - run: aws cloudfront create-invalidation --paths '/*' --distribution-id E11BSNHWM09WR
+
