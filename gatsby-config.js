@@ -3,5 +3,25 @@ module.exports = {
     title: `pokedex`,
     siteUrl: `https://www.yourdomain.tld`,
   },
-  plugins: [],
+  plugins: [
+    {
+      resolve: `gatsby-source-mysql`,
+      options: {
+        connectionDetails: {
+          host: 'mysql-free.csp0unojwphx.eu-west-3.rds.amazonaws.com',
+          port: '3306',
+          user: 'admin',
+          password: 'jamstack',
+          database: 'pokedex'
+        },
+        queries: [
+            {
+              statement: 'SELECT * FROM pokemon',
+              idFieldName: 'PokemonID',
+              name: 'pokemons'
+            }
+        ]
+      }
+    }
+  ],
 }
