@@ -20,13 +20,7 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        
+    
     - name: Setup AWS CLI
     - run: aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
     - run: aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -34,8 +28,15 @@ jobs:
     - run: aws configure set output json
     
     
+    - uses: actions/checkout@v3
     - name: build
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
     - run: npm run build
+        
+
     
     - name: publish
     - run: aws s3 cp --recursive public/ s3://jamstack-public/ --cache-control 'public, max-age=300, s-maxage=315360000'
