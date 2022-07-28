@@ -13,14 +13,7 @@ module.exports = {
           user: 'admin',
           password: 'jamstack',
           database: 'pokedex'
-        },
-        queries: [
-            {
-              statement: 'SELECT * FROM pokemon',
-              idFieldName: 'PokemonID',
-              name: 'pokemons'
-            }
-        ]
+        }
       }
     }
   ],
