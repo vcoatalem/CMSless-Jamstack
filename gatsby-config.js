@@ -15,7 +15,11 @@ module.exports = {
           database: 'pokedex'
         },
         queries: [
-          
+          {
+              statement: 'SELECT * FROM pokemon',
+              idFieldName: 'PokemonID',
+              name: 'pokemons'
+          }
         ]
       }
     }
