@@ -13,7 +13,10 @@ module.exports = {
           user: 'admin',
           password: 'jamstack',
           database: 'pokedex'
-        }
+        },
+        queries: [
+          
+        ]
       }
     }
   ],
