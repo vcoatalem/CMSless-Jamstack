@@ -1,7 +1,7 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: Publish
 
 on:
   push:
@@ -20,14 +20,18 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-        
-    - uses: actions/checkout@v3
+       
+    - name: check out repository
+      uses: actions/checkout@v3
     
     - name: Setup AWS CLI
       run: aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
         | aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         | aws configure set region ${{ secrets.AWS_REGION }}
         | aws configure set output json
+        
+    - name: test sql connection
+      run: mysql -h mysql-free.csp0unojwphx.eu-west-3.rds.amazonaws.com
 
     - name: build
       uses: actions/setup-node@v3
