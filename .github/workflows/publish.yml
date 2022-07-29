@@ -32,9 +32,6 @@ jobs:
         
     - name: test AWS connection
       run: aws s3 ls
-        
-    - name: test sql connection
-      run: mysql -h mysql-free.csp0unojwphx.eu-west-3.rds.amazonaws.com
 
     - name: build
       uses: actions/setup-node@v3
