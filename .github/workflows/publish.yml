@@ -30,6 +30,9 @@ jobs:
         | aws configure set region ${{ secrets.AWS_REGION }}
         | aws configure set output json
         
+    - name: test AWS connection
+      run: aws s3 ls
+        
     - name: test sql connection
       run: mysql -h mysql-free.csp0unojwphx.eu-west-3.rds.amazonaws.com
 
