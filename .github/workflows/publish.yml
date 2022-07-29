@@ -33,13 +33,14 @@ jobs:
     - name: test AWS connection
       run: aws s3 ls
 
-    - name: install node
+    - name: setup node
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+  
+    - name: install node
       run: npm install
-
       
     - name: build
     - run: npm run build
