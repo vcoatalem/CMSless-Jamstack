@@ -33,12 +33,22 @@ jobs:
     - name: test AWS connection
       run: aws s3 ls
 
-    - name: build
+    - name: install node
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm install && npm run build
+      run: npm install
+
+      
+    - name: build
+    - run: npm run build
+      env:
+        DB_HOST: ${{ secrets.DB_HOST }}
+        DB_PORT: ${{ secrets.DB_PORT }}
+        DB_USER: ${{ secrets.DB_USER }}
+        DB_NAME: ${{ secrets.DB_NAME }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         
     
     - name: publish
