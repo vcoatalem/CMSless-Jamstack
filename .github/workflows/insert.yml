@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: Manual workflow
+name: Add new Pokemon
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
@@ -33,8 +33,8 @@ jobs:
     steps:
     
     - name: test connection
-      run: mysql -h {{ secrets.DB_HOST }} -u {{ secrets.DB_USER }} -p {{ secrets.DB_PASSWORD }} pokedex
+      run: mysql --host={{ secrets.DB_HOST }} --user={{ secrets.DB_USER }} --password={{ secrets.DB_PASSWORD }} --database=pokedex
     
     # Runs a single command using the runners shell
     - name: insert pokemon
-      run: mysql -h {{ secrets.DB_HOST }} -u {{ secrets.DB_USER }} -p {{ secrets.DB_PASSWORD }} pokedex -e "insert into pokemon values (a,b,c)"
+      run: mysql --host={{ secrets.DB_HOST }} --user={{ secrets.DB_USER }} --password={{ secrets.DB_PASSWORD }} --database=pokedex --execute="insert into pokemon values (a,b,c)"
