@@ -1,0 +1,40 @@
+# This is a basic workflow that is manually triggered
+
+name: Manual workflow
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      name:
+        description: 'Name of the pokemon to create'
+        # Input has to be provided for the workflow to run
+        required: true
+      type:
+        description: 'Type of the pokemon to create'
+        # Input has to be provided for the workflow to run
+        required: true
+      image:
+        description: 'Link to image'
+        # Input has to be provided for the workflow to run
+        required: true
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "greet"
+  
+  insert:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    
+    - name: test connection
+      run: mysql -h {{ secrets.DB_HOST }} -u {{ secrets.DB_USER }} -p {{ secrets.DB_PASSWORD }} 
+    
+    # Runs a single command using the runners shell
+    - name: insert pokemon
+      run: mysql -h {{ secrets.DB_HOST }} -u {{ secrets.DB_USER }} -p {{ secrets.DB_PASSWORD }} pokedex -e "insert into pokemon values (a,b,c)"
