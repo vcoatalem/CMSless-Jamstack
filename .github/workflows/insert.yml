@@ -37,4 +37,4 @@ jobs:
     
     # Runs a single command using the runners shell
     - name: insert pokemon
-      run: mysql --host=${{ secrets.DB_HOST }} --user=${{ secrets.DB_USER }} --password=${{ secrets.DB_PASSWORD }} --database=${{secrets.DB_NAME}} --execute="insert into pokemon values (a,b,c)"
+      run: mysql --host=${{ secrets.DB_HOST }} --user=${{ secrets.DB_USER }} --password=${{ secrets.DB_PASSWORD }} --database=${{secrets.DB_NAME}} --execute="insert into pokemon values ('${{ github.event.inputs.name }}','${{ github.event.inputs.type }}','${{ github.event.inputs.image }}')"
