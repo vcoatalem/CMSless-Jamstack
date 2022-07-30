@@ -1,0 +1,30 @@
+# This is a basic workflow that is manually triggered
+
+name: Remove Pokemon
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      name:
+        description: 'Name of the pokemon to remove'
+        # Input has to be provided for the workflow to run
+        required: true
+
+jobs:
+  
+  remove:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    
+    - name: test connection
+      run: mysql --host=${{ secrets.DB_HOST }} --user=${{ secrets.DB_USER }} --password=${{ secrets.DB_PASSWORD }} --database=${{secrets.DB_NAME}}
+    
+    # Runs a single command using the runners shell
+    - name: remove pokemon
+      run: mysql --host=${{ secrets.DB_HOST }} --user=${{ secrets.DB_USER }} --password=${{ secrets.DB_PASSWORD }} --database=${{secrets.DB_NAME}} --execute="delete from pokemon where name='${{ github.event.inputs.name }}'"
