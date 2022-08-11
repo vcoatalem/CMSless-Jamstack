@@ -1,6 +1,9 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 
+import PokedexTable from "../components/pokedexTable"
+
+
 // styles
 const pageStyles = {
   color: "#232129",
@@ -94,24 +97,9 @@ export default ({ data }) => {
           🎉🎉🎉
         </span>
       </h1>
-      <table>
-        <thead>
-          <tr>
-            <th>name</th>
-            <th>type</th>
-            <th>image</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.allMysqlPokemons.edges.map(({ node }, index) => (
-            <tr key={index}>
-              <td>{node.name}</td>
-              <td>{node.type}</td>
-              <td>{node.image}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      
+
+      {PokedexTable(data.allMysqlPokemons.edges)}
       
       <img
         alt="Gatsby G Logo"
