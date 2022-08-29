@@ -8,6 +8,10 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  workflow_run:
+    workflows: ["Remove Pokemon", "Add new Pokemon"]
+    types:
+      - completed
 
 jobs:
   build:
