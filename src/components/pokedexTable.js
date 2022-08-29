@@ -35,22 +35,23 @@ const columns = [
 
 
 
-/*
-const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-];
-*/
+
+function GetTypeImage(type) {
+    if (["fight", "rock", "ground"].includes(type))
+        return "https://upload.wikimedia.org/wikipedia/commons/2/2c/Logo_Type_Combat_Pokemon_JCC.png"
+    if (["electric"].includes(type))
+        return "https://upload.wikimedia.org/wikipedia/commons/4/48/Logo_Type_Electrik_Pokemon_JCC.png"
+    if (["water", "ice"].includes(type))
+        return "https://upload.wikimedia.org/wikipedia/commons/c/ce/Logo_Type_Eau_Pokemon_JCC.png"
+    if (["fire"].includes(type))
+        return "https://upload.wikimedia.org/wikipedia/commons/8/8b/Logo_Type_Feu_Pokemon_JCC.png"
+    return ""
+}
+
 
 
 function FormatRows(pokedexEntries) {
+    console.log(pokedexEntries)
     return pokedexEntries.map(pokedexEntry => {
         return {
             "name": pokedexEntry.node.name,
@@ -79,8 +80,13 @@ export default function PokedexTable(pokedexData) {
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
-                <TableCell align="right">{row.type}</TableCell>
-                <TableCell align="right">{row.image}</TableCell>
+                <TableCell align="right">
+                    <image src={GetTypeImage(row.type)}></image>
+                    {row.type}
+                </TableCell>
+                <TableCell align="right">
+                    <image src={row.image}></image>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -106,4 +112,3 @@ export default function PokedexTable(pokedexData) {
     </Box>
   );
   */
-    
