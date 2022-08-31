@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -61,6 +61,12 @@ function FormatRows(pokedexEntries) {
     })
 }
 export default function PokedexTable(pokedexData) {
+    const [isClient, setClient] = useState(false);
+
+    useEffect(() => {
+      setClient(true);
+    }, []);
+    
     return (
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
