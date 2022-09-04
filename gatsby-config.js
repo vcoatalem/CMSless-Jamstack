@@ -18,10 +18,21 @@ module.exports = {
           {
               statement: 'SELECT * FROM pokemon',
               idFieldName: 'name',
-              name: 'pokemons'
+              name: 'pokemons',
+              remoteImageFieldNames: ['image']
           }
         ]
       }
-    }
-  ],
+    }/*,
+    {
+      resolve: `gatsby-plugin-remote-images`,
+      options: {
+        nodeType: 'MysqlPokemons',
+        imagePath: 'image',
+        // OPTIONAL: Name you want to givAe new image field on the node.
+        // Defaults to 'localImage'.
+        name: 'localImage',
+      }
+    }*/
+  ]
 }

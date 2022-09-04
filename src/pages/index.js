@@ -109,6 +109,28 @@ export default ({ data }) => {
   )
 }
 
+
+export const query = graphql`
+query GetAllPokemons {
+  allMysqlPokemons {
+    edges {
+      node {
+        name
+        type
+        mysqlImage {
+          childImageSharp {
+            fluid(maxWidth: 300) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`
+
+/*
 export const query = graphql`
 query GetAllPokemons {
   allMysqlPokemons {
@@ -117,8 +139,39 @@ query GetAllPokemons {
         name
         type
         image
+        localImage {
+          childImageSharp {
+            fluid(maxWidth: 400, maxHeight: 250) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }
 }
 `
+*/
+
+/*
+export const query = graphql`
+query GetAllPokemons {
+  allMysqlPokemons {
+    edges {
+      node {
+        name
+        type
+        image
+        localImage {
+          childImageSharp {
+            fluid(maxWidth: 400, maxHeight: 250) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`
+*/

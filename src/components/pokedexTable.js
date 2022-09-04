@@ -6,6 +6,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
+
+import { graphql } from "gatsby"
 
 const columns = [
   { 
@@ -34,8 +37,6 @@ const columns = [
 ];
 
 
-
-
 function GetTypeImage(type) {
     if (["fight", "rock", "ground"].includes(type))
         return "https://upload.wikimedia.org/wikipedia/commons/2/2c/Logo_Type_Combat_Pokemon_JCC.png"
@@ -61,13 +62,27 @@ function FormatRows(pokedexEntries) {
     })
 }
 export default function PokedexTable(pokedexData) {
-    const [isClient, setClient] = useState(false);
-
-    useEffect(() => {
-      setClient(true);
-    }, []);
-    
+  console.log("pokedex data:", pokedexData)
     return (
+
+      <div>
+      {FormatRows(pokedexData).map((row) => {
+        return (
+          <div>
+            <GatsbyImage src={row.image}/>
+          </div>
+        )
+      })
+      }
+      </div>
+    )
+}
+
+
+
+    /*
+ /*
+      
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -78,30 +93,35 @@ export default function PokedexTable(pokedexData) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {FormatRows(pokedexData).map((row) => (
-              <TableRow
-                key={row.name}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">
-                    <image src={GetTypeImage(row.type)}></image>
-                    {row.type}
-                </TableCell>
-                <TableCell align="right">
-                    <image src={row.image}></image>
-                </TableCell>
-              </TableRow>
-            ))}
+            {FormatRows(pokedexData).map((row) => {
+              const [image, setImage] = useState("");
+              useEffect(() => setImage(row.image))
+              return (
+                <TableRow
+                  key={row.name}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.name}
+                  </TableCell>
+                  <TableCell align="right">
+                      <image src={GetTypeImage(row.type)}></image>
+                      {row.type}
+                  </TableCell>
+                  <TableCell align="right">
+                      <image src={row.image}></image>
+                  </TableCell>
+                </TableRow>
+              )
+            })}
           </TableBody>
         </Table>
       </TableContainer>
-    );
-  }
 
-/*
+          */ 
+
+  
+
 export default function PokedexTable(pokedexData) {
     console.log(pokedexData);
     console.log(FormatRows(pokedexData))
@@ -116,5 +136,5 @@ export default function PokedexTable(pokedexData) {
         disableSelectionOnClick
       />
     </Box>
-  );
-  */
+  )
+}
