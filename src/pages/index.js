@@ -1,5 +1,8 @@
 import * as React from "react"
 import { graphql } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
+import Img from "gatsby-image"
+
 
 // styles
 const pageStyles = {
@@ -103,13 +106,16 @@ export default ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {data.allMysqlPokemons.edges.map(({ node }, index) => (
-            <tr key={index}>
-              <td>{node.name}</td>
-              <td>{node.type}</td>
-              <td>{node.image}</td>
-            </tr>
-          ))}
+          {data.allMysqlPokemons.edges.map(({ node }, index) => {
+            console.log(node)
+            return (
+              <tr key={index}>
+                <td>{node.name}</td>
+                <td>{node.type}</td>
+                <td><Img fluid={node.mysqlImage.childImageSharp.fluid}/></td>
+              </tr>
+            )
+          })}
         </tbody>
       </table>
       
@@ -128,7 +134,13 @@ query GetPokemons {
       node {
         name
         type
-        image
+        mysqlImage {
+          childImageSharp {
+            fluid(maxWidth: 300) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }

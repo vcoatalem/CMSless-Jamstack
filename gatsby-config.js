@@ -4,6 +4,8 @@ module.exports = {
     siteUrl: `https://www.yourdomain.tld`,
   },
   plugins: [
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-mysql`,
       options: {
@@ -18,7 +20,8 @@ module.exports = {
           {
               statement: 'SELECT * FROM pokemon',
               idFieldName: 'PokemonID',
-              name: 'pokemons'
+              name: 'pokemons',
+              remoteImageFieldNames: ['image']
           }
         ]
       }
