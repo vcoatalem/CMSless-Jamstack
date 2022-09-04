@@ -107,7 +107,7 @@ export default ({ data }) => {
 }
 
 export const query = graphql`
-query GetPokemons {
+query GetAllPokemons {
   allMysqlPokemons {
     edges {
       node {

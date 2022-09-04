@@ -36,6 +36,17 @@ const columns = [
   },
 ];
 
+function GetTypeIcon(type) {
+  if (["fight", "rock", "ground"].includes(type))
+        return <StaticImage src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Logo_Type_Combat_Pokemon_JCC.png"/>
+    if (["electric"].includes(type))
+        return <StaticImage src="https://upload.wikimedia.org/wikipedia/commons/4/48/Logo_Type_Electrik_Pokemon_JCC.png"/>
+    if (["water", "ice"].includes(type))
+        return <StaticImage src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Logo_Type_Eau_Pokemon_JCC.png"/>
+    if (["fire"].includes(type))
+        return <StaticImage src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Logo_Type_Feu_Pokemon_JCC.png"/>
+    return ""
+}
 
 function GetTypeImage(type) {
     if (["fight", "rock", "ground"].includes(type))
@@ -65,7 +76,6 @@ export default function PokedexTable(pokedexData) {
   console.log("pokedex data:", pokedexData)
   return (
     <div>
-      {FormatRows(pokedexData).map((row) => {
         return (
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -87,7 +97,7 @@ export default function PokedexTable(pokedexData) {
                         {row.name}
                       </TableCell>
                       <TableCell align="right">
-                          <image src={GetTypeImage(row.type)}></image>
+                          {GetTypeIcon(row.type)}
                           {row.type}
                       </TableCell>
                       <TableCell align="right">
@@ -100,7 +110,6 @@ export default function PokedexTable(pokedexData) {
             </Table>
           </TableContainer>
         )
-      })}
     </div>
   )
 }

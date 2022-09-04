@@ -19,7 +19,7 @@ module.exports = {
         queries: [
           {
               statement: 'SELECT * FROM pokemon',
-              idFieldName: 'PokemonID',
+              idFieldName: 'name',
               name: 'pokemons',
               remoteImageFieldNames: ['image']
           }
