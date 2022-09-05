@@ -15,6 +15,14 @@ import Fire from "../../images/fire.svg"
 import Electric from "../../images/electric.svg"
 import Rock from "../../images/rock.svg"
 import Bug from "../../images/bug.svg"
+import Ghost from "../../images/ghost.svg"
+import Poison from "../../images/ghost.svg"
+import Grass from "../../images/grass.svg"
+import Ground from "../../images/ground.svg"
+import Dragon from "../../images/dragon.svg"
+import Fairy from "../../images/fairy.svg"
+import Ice from "../../images/ice.svg"
+import Normal from "../../images/normal.svg"
 
 const columns = [
   { 
@@ -49,7 +57,7 @@ function GetTypeIcon(type) {
       return <Water/>
     case "fire":
       return <Fire/>
-    case "eletric":
+    case "electric":
       return <Electric/>
     case "rock":
       return <Rock/>
@@ -57,6 +65,24 @@ function GetTypeIcon(type) {
       return <Bug/>
     case "fighting":
       return <Fighting/>
+    case "ghost":
+      return <Ghost/>
+    case "poison":
+      return <Poison/>
+    case "dark":
+      return <Dark/>
+    case "ground":
+      return <Ground/>
+    case "ice":
+      return <Ice/>
+    case "dragon":
+      return <Dragon/>
+    case "fairy":
+      return <Fairy/>
+    case "grass":
+      return <Grass/>
+    case "normal":
+      return <Normal/>
   }
 }
 
