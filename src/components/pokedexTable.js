@@ -105,9 +105,9 @@ export default function PokedexTable(pokedexData) {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Name</TableCell>
-              <TableCell align="left">Type</TableCell>
-              <TableCell align="right">Image</TableCell>
+              <TableCell><h1>Name</h1></TableCell>
+              <TableCell align="left"><h1>Type</h1></TableCell>
+              <TableCell align="right"><h1>Image</h1></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -118,7 +118,7 @@ export default function PokedexTable(pokedexData) {
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {row.name}
+                    <h3>{row.name}</h3>
                   </TableCell>
                   <TableCell align="left">
                       {GetTypeIcon(row.type)}
